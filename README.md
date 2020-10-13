@@ -92,10 +92,20 @@ If you don't have or want to setup a python environment but have `docker` instal
 ```shell
 $ docker build . -t safaribooks && \
   docker run --rm -it -v $(pwd)/Books:/safaribooks/Books safaribooks \
-    --cred "account_mail@mail.com:password01" <BOOK ID>
+    python3 safaribooks.py --no-cookies --cred "account_mail@mail.com:password01" <BOOK ID>
 ```
 
 The above will run build a `safaribooks` docker image locally and run it. Please note the `-v` argument: it'll make the downloaded books available outside of the container. In this example, it'll create a directory called `./Books` on your current directory.
+
+### Interactive shell
+
+To use cookies, do batch downloading, just omit the start command:
+
+```shell
+$ docker run --rm -it -v $(pwd)/Books:/safaribooks/Books safaribooks
+```
+
+Then you have a bash prompt to run any script.
 
 ## Examples:
   * ## Download [Test-Driven Development with Python, 2nd Edition](https://www.safaribooksonline.com/library/view/test-driven-development-with/9781491958698/):  
